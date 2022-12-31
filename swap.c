@@ -1,35 +1,31 @@
 #include "monty.h"
 /**
- * swap - intercambia 2 elemnetos superiores
- * @stack: pila
- * @line_number: numero de linea
- */
-void swap(stack_m **stack, unsigned int line_number)
+ * f_swap - agrega 2 elementos superiores de la pila
+ * @head: cabeza pila
+ * @counter: line_number
+ * Return: vacio
+*/
+void f_swap(stack_t **head, unsigned int counter)
 {
-	stack_m *p = (*stack);
-	int length = 0;
+	stack_t *h;
+	int len = 0, aux;
 
-	while (p != NULL)
+	h = *head;
+	while (h)
 	{
-		length++;
-		p = p->next;
+		h = h->next;
+		len++;
 	}
-	if (length < 2)
+	if (len < 2)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		stack_m *node1 = (*stack);
-		stack_m *node2 = (*stack)->next;
-
-		node1->next = node2->next;
-		node1->prev = node2;
-
-		node2->prev = NULL;
-		node2->next = node1;
-
-		(*stack) = node2;
-	}
+	h = *head;
+	aux = h->n;
+	h->n = h->next->n;
+	h->next->n = aux;
 }
