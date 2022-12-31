@@ -1,25 +1,23 @@
 #include "monty.h"
 /**
- * pop - elimina elemento superior de la pila
- * @stack: puntero de la pila
- * @line_number: linea del numero
+ * f_pop - imprime parte superior
+ * @head: cabeza pila
+ * @counter: line_number
  * Return: vacio
- */
-
-void pop(stack_m **stack, unsigned int line_number)
+*/
+void f_pop(stack_t **head, unsigned int counter)
 {
-	stack_m *ptr;
+	stack_t *h;
 
-	(void)line_number;
-
-	if (stack == NULL || *stack == NULL)
+	if (*head == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	ptr = *stack;
-	*stack = ptr->next;
-	if (ptr->next != NULL)
-		ptr->next->prev = NULL;
-	free(ptr);
+	h = *head;
+	*head = h->next;
+	free(h);
 }
