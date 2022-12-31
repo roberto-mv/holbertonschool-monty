@@ -1,11 +1,12 @@
 #include "monty.h"
 /**
- * nop - ninguna accion
- * @stack: puntero pila
- * @line_number: linea del numero
+  *f_nop- no hace nada
+  *@head: cabeza pila
+  *@counter: line_number
+  *Return: vacio
  */
-void nop(stack_m **stack, unsigned int line_number)
+void f_nop(stack_t **head, unsigned int counter)
 {
-	(void)stack;
-	(void)line_number;
+	(void) counter;
+	(void) head;
 }
