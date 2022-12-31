@@ -1,27 +1,37 @@
 #include "monty.h"
 /**
- * push - empuja elemento a una lista
- * @stack: puntero del primer elemento de la pila
- * @line_number: linea del numero
+ * f_push - añade nodo a la pila
+ * @head: pila
+ * @counter: line_number
  * Return: vacio
- */
-
-void push(stack_m **stack, unsigned int line_number)
+*/
+void f_push(stack_t **head, unsigned int counter)
 {
-	(void)line_number;
+	int n, j = 0, flag = 0;
 
-	if (input != NULL)
+	if (bus.arg)
 	{
-		stack_m *ptr = malloc(sizeof(stack_m));
-
-		ptr->n = atoi(input);
-		ptr->next = (*stack);
-		ptr->prev = NULL;
-
-		if ((*stack) != NULL)
+		if (bus.arg[0] == '-')
+			j++;
+		for (; bus.arg[j] != '\0'; j++)
 		{
-			(*stack)->prev = ptr;
-		}
-		(*stack) = ptr;
-	}
+			if (bus.arg[j] > 57 || bus.arg[j] < 48)
+				flag = 1; }
+		if (flag == 1)
+		{ fprintf(stderr, "L%d: usage: push integer\n", counter);
+			fclose(bus.file);
+			free(bus.content);
+			free_stack(*head);
+			exit(EXIT_FAILURE); }}
+	else
+	{ fprintf(stderr, "L%d: usage: push integer\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
+		exit(EXIT_FAILURE); }
+	n = atoi(bus.arg);
+	if (bus.lifi == 0)
+		addnode(head, n);
+	else
+		addqueue(head, n);
 }
