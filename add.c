@@ -1,31 +1,32 @@
 #include "monty.h"
-
 /**
- * add - añade 2 elementos superiores
- * @stack: pila
- * @line_number: numero de linea
- */
-
-void add(stack_m **stack, unsigned int line_number)
+ * f_add - agrega 2 elementos superiores a la pila
+ * @head: cabeza pila
+ * @counter: line_number
+ * Return: vacio
+*/
+void f_add(stack_t **head, unsigned int counter)
 {
-	stack_m *p = (*stack);
-	int length = 0;
-	int sum = 0;
+	stack_t *h;
+	int len = 0, aux;
 
-	while (p != NULL)
+	h = *head;
+	while (h)
 	{
-		length++;
-		p = p->next;
+		h = h->next;
+		len++;
 	}
-	if (length < 2)
+	if (len < 2)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	else
-	{
-		sum = (*stack)->n + (*stack)->next->n;
-		(*stack)->next->n = sum;
-		pop(stack, line_number);
-	}
+	h = *head;
+	aux = h->n + h->next->n;
+	h->next->n = aux;
+	*head = h->next;
+	free(h);
 }
