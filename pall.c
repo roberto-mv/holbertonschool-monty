@@ -1,22 +1,21 @@
 #include "monty.h"
 /**
- * pall - imprime elementos de lista vinculada
- * @stack: puntero al primer elemento de la pila
- * @line_number: linea del numero
+ * f_pall - imprime la pila
+ * @head: cabeza pila
+ * @counter: no
  * Return: vacio
- */
-
-void pall(stack_m **stack, unsigned int line_number)
+*/
+void f_pall(stack_t **head, unsigned int counter)
 {
-	stack_m *ptr;
+	stack_t *h;
+	(void)counter;
 
-	(void)line_number;
-	if (stack == NULL || *stack == NULL)
+	h = *head;
+	if (h == NULL)
 		return;
-	ptr = *stack;
-	while (ptr)
+	while (h)
 	{
-		printf("%d\n", ptr->n);
-		ptr = ptr->next;
+		printf("%d\n", h->n);
+		h = h->next;
 	}
 }
