@@ -1,17 +1,19 @@
 #include "monty.h"
 /**
- * pint - imprime valor de la pila
- * @stack: puntero de la pila
- * @line_number: linea del numero
+ * f_pint - imprime parte superior
+ * @head: cabeza pila
+ * @counter: line_number
  * Return: vacio
- */
-void pint(stack_m **stack, unsigned int line_number)
+*/
+void f_pint(stack_t **head, unsigned int counter)
 {
-	if (!*stack || !stack)
+	if (*head == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", counter);
+		fclose(bus.file);
+		free(bus.content);
+		free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	else
-		dprintf(STDOUT_FILENO, "%d\n", (*stack)->n);
+	printf("%d\n", (*head)->n);
 }
